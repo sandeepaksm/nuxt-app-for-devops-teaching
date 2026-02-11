@@ -8,6 +8,7 @@
     "preview": "nuxt preview",
     "postinstall": "nuxt prepare",
     "lint": "eslint .",
+    "deploy": "wrangler pages deploy",
     "typecheck": "nuxt typecheck"
   },
   "dependencies": {
@@ -21,7 +22,8 @@
     "@nuxt/eslint": "^1.14.0",
     "eslint": "^10.0.0",
     "typescript": "^5.9.3",
-    "vue-tsc": "^3.2.4"
+    "vue-tsc": "^3.2.4",
+    "wrangler": "^4.63.0"
   },
   "packageManager": "pnpm@10.29.2"
 }

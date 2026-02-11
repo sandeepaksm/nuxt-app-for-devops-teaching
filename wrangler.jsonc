@@ -1,0 +1,12 @@
+{
+  // Project name
+  "name": "long-firefly-0a0b",
+
+  // Required
+  "compatibility_date": "2026-02-10",
+
+  // This tells Pages where your built files are
+  "pages_build_output_dir": "./dist",
+
+  "compatibility_flags": ["nodejs_compat"]
+}
