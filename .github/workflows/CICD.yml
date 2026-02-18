@@ -30,10 +30,10 @@ jobs:
         run: npx nuxi generate
 
       # 5️⃣ Deploy to Cloudflare Pages using Wrangler CLI
-      - name: Deploy to Cloudflare Pages
-  uses: cloudflare/wrangler-action@v3
-  with:
-    apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
-    accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-    command: pages deploy .output/public --project-name=YOUR_PROJECT_NAME --branch=master
+     - name: Deploy to Cloudflare Pages
+        uses: cloudflare/wrangler-action@v3
+        with:
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          command: pages deploy .output/public --project-name=your-project-name
 
