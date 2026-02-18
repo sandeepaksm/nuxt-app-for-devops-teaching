@@ -3,26 +3,23 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
-      - master   # your branch is master (from screenshot)
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    permissions:
-      contents: read
-      deployments: write
 
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v4
+      - uses: actions/checkout@v4
 
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 18
+          cache: 'npm'
 
       - name: Install dependencies
-        run: npm install
+        run: npm ci --legacy-peer-deps
 
       - name: Build Nuxt project
         run: npm run build
@@ -32,5 +29,6 @@ jobs:
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
-          command: pages deploy .output/public --project-name=your-project-name
+          command: pages deploy .output/public --project-name=YOUR_PROJECT_NAME
+
 
