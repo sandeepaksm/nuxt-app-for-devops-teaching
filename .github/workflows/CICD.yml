@@ -3,37 +3,34 @@ name: Deploy to Cloudflare Pages
 on:
   push:
     branches:
-      - master   # change if your branch is different
+      - master
 
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      deployments: write
 
     steps:
-      # 1️⃣ Checkout repository
       - name: Checkout code
         uses: actions/checkout@v4
 
-      # 2️⃣ Setup Node 20 (Required for Wrangler v4)
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
           node-version: 20
           cache: 'npm'
 
-      # 3️⃣ Install dependencies (clean CI install)
       - name: Install dependencies
-        run: npm ci
+        run: npm install
 
-      # 4️⃣ Generate static site (Nuxt 3)
-      - name: Generate static site
-        run: npx nuxi generate
+      - name: Build Nuxt project
+        run: npm run build
 
-      # 5️⃣ Deploy to Cloudflare Pages using Wrangler CLI
-     - name: Deploy to Cloudflare Pages
+      - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           command: pages deploy .output/public --project-name=your-project-name
-
