@@ -21,8 +21,9 @@ jobs:
       - name: Install dependencies
         run: npm ci
 
-      - name: Build Nuxt project
-        run: npm run build
+      - name: Generate static site
+        run: npx nuxi generate
+
 
       - name: Deploy to Cloudflare Pages
         uses: cloudflare/wrangler-action@v3
